@@ -20,9 +20,9 @@ fun GlassCard(
     modifier: Modifier = Modifier,
     shape: Shape = androidx.compose.foundation.shape.RoundedCornerShape(Dimens.cornerRadiusSmallCard),
     elevation: Dp = Dimens.elevationLevel1,
-    opacity: Float? = null,
-    borderColor: Color = Color.Transparent,
     containerColor: Color = MaterialTheme.colorScheme.surface,
+    opacity: Float = 1f,
+    borderColor: Color = Color.Transparent,
     content: @Composable BoxScope.() -> Unit
 ) {
     val effectiveBorder = if (borderColor == Color.Transparent) {
@@ -31,10 +31,12 @@ fun GlassCard(
         borderColor
     }
 
+    val effectiveContainerColor = containerColor.copy(alpha = opacity)
+
     Card(
         modifier = modifier,
         shape = shape,
-        colors = CardDefaults.cardColors(containerColor = containerColor),
+        colors = CardDefaults.cardColors(containerColor = effectiveContainerColor),
         elevation = CardDefaults.cardElevation(
             defaultElevation = elevation,
             pressedElevation = elevation + 2.dp

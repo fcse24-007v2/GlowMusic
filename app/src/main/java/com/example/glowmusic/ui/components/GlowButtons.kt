@@ -31,7 +31,7 @@ fun GlowFilledButton(
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier.then(Modifier),
+        modifier = modifier,
         enabled = enabled,
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
