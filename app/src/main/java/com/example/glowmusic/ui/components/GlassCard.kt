@@ -4,7 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,23 +18,35 @@ import com.example.glowmusic.ui.theme.Dimens
 @Composable
 fun GlassCard(
     modifier: Modifier = Modifier,
-    shape: Shape = RoundedCornerShape(Dimens.cornerRadiusSmallCard),
-    elevation: Dp = Dimens.subtleElevation,
-    opacity: Float? = null,
+    shape: Shape = androidx.compose.foundation.shape.RoundedCornerShape(Dimens.cornerRadiusSmallCard),
+    elevation: Dp = Dimens.elevationLevel1,
+    containerColor: Color = MaterialTheme.colorScheme.surface,
+    opacity: Float = 1f,
     borderColor: Color = Color.Transparent,
     content: @Composable BoxScope.() -> Unit
 ) {
-    val surfaceColor = MaterialTheme.colorScheme.surface
     val effectiveBorder = if (borderColor == Color.Transparent) {
-        MaterialTheme.colorScheme.outline.copy(alpha = 0.25f)
+        MaterialTheme.colorScheme.outline.copy(alpha = 0.12f)
     } else {
         borderColor
     }
 
-    Box(
-        modifier = modifier
-            .background(surfaceColor, shape)
-            .border(width = 1.dp, color = effectiveBorder, shape = shape),
-        content = content
-    )
+    val effectiveContainerColor = containerColor.copy(alpha = opacity)
+
+    Card(
+        modifier = modifier,
+        shape = shape,
+        colors = CardDefaults.cardColors(containerColor = effectiveContainerColor),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = elevation,
+            pressedElevation = elevation + 2.dp
+        )
+    ) {
+        Box(
+            modifier = Modifier
+                .border(width = 0.5.dp, color = effectiveBorder, shape = shape),
+            content = content
+        )
+    }
 }
+

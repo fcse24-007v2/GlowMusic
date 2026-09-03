@@ -48,17 +48,18 @@ fun HomeScreen(
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(bottom = 100.dp, top = Dimens.spacingSm),
-        verticalArrangement = Arrangement.spacedBy(Dimens.spacingMd)
+        contentPadding = PaddingValues(bottom = 100.dp, top = Dimens.spacingMd),
+        verticalArrangement = Arrangement.spacedBy(Dimens.spacingLg)
     ) {
         item {
-            Column(modifier = Modifier.padding(horizontal = Dimens.spacingSm)) {
+            Column(modifier = Modifier.padding(horizontal = Dimens.spacingMd)) {
                 Text(
                     text = "Glow Music",
-                    style = MaterialTheme.typography.headlineLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    fontWeight = FontWeight.Bold
+                    style = MaterialTheme.typography.displayMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Black
                 )
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = "Your local music library",
                     style = MaterialTheme.typography.bodyLarge,
@@ -75,11 +76,11 @@ fun HomeScreen(
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurface,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(horizontal = Dimens.spacingSm, vertical = Dimens.spacingXs)
+                        modifier = Modifier.padding(horizontal = Dimens.spacingMd, vertical = Dimens.spacingSm)
                     )
                     LazyRow(
-                        contentPadding = PaddingValues(horizontal = Dimens.spacingSm),
-                        horizontalArrangement = Arrangement.spacedBy(Dimens.spacingSm)
+                        contentPadding = PaddingValues(horizontal = Dimens.spacingMd),
+                        horizontalArrangement = Arrangement.spacedBy(Dimens.spacingMd)
                     ) {
                         items(uiState.favoriteTracks, key = { it.id }) { item ->
                             FavoriteCard(
@@ -98,7 +99,7 @@ fun HomeScreen(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(horizontal = Dimens.spacingSm)
+                modifier = Modifier.padding(horizontal = Dimens.spacingMd)
             )
         }
 
@@ -121,16 +122,17 @@ private fun FavoriteCard(
         modifier = Modifier
             .width(140.dp)
             .clickable { onClick() },
-        shape = RoundedCornerShape(Dimens.cornerRadiusSmallCard)
+        shape = RoundedCornerShape(Dimens.cornerRadiusSmallCard),
+        elevation = Dimens.elevationLevel2
     ) {
         Column(
-            modifier = Modifier.padding(Dimens.spacingXs),
+            modifier = Modifier.padding(Dimens.spacingSm),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Surface(
                 modifier = Modifier
                     .size(120.dp)
-                    .clip(RoundedCornerShape(Dimens.cornerRadiusSmallCard)),
+                    .clip(RoundedCornerShape(Dimens.cornerRadiusMedium)),
                 color = MaterialTheme.colorScheme.primaryContainer
             ) {
                 if (!item.artworkUri.isNullOrEmpty()) {
@@ -148,7 +150,7 @@ private fun FavoriteCard(
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(Dimens.spacingSm))
             Text(
                 text = item.title,
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
@@ -158,7 +160,7 @@ private fun FavoriteCard(
             )
             Text(
                 text = item.artist,
-                style = MaterialTheme.typography.labelMedium,
+                style = MaterialTheme.typography.labelSmall,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -176,20 +178,22 @@ private fun MediaListItem(
     GlassCard(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = Dimens.spacingSm, vertical = 4.dp)
+            .padding(horizontal = Dimens.spacingMd, vertical = 6.dp)
             .clickable { onClick() },
-        shape = RoundedCornerShape(Dimens.cornerRadiusSmallCard)
+        shape = RoundedCornerShape(Dimens.cornerRadiusSmallCard),
+        elevation = Dimens.elevationLevel1
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(Dimens.spacingMd),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(Dimens.spacingMd)
         ) {
             Surface(
                 modifier = Modifier
-                    .size(52.dp)
-                    .clip(RoundedCornerShape(14.dp)),
+                    .size(56.dp)
+                    .clip(RoundedCornerShape(Dimens.cornerRadiusMedium)),
                 color = MaterialTheme.colorScheme.primaryContainer
             ) {
                 if (!item.artworkUri.isNullOrEmpty()) {
@@ -208,30 +212,32 @@ private fun MediaListItem(
                 }
             }
 
-            Spacer(modifier = Modifier.width(Dimens.spacingSm))
-
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = item.title,
-                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
                     text = "${item.artist} • ${item.album}",
-                    style = MaterialTheme.typography.labelMedium,
+                    style = MaterialTheme.typography.labelSmall,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
-            IconButton(onClick = onToggleFavorite) {
+            IconButton(
+                onClick = onToggleFavorite,
+                modifier = Modifier.size(40.dp)
+            ) {
                 Icon(
                     imageVector = if (item.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                     contentDescription = "Favorite",
-                    tint = if (item.isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                    tint = if (item.isFavorite) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(24.dp)
                 )
             }
         }
