@@ -121,7 +121,7 @@ fun PlayerScreen(
                     .fillMaxWidth(0.85f)
                     .aspectRatio(1f)
                     .clip(RoundedCornerShape(Dimens.cornerRadiusScreenCard)),
-                shadowElevation = Dimens.subtleElevation,
+               shadowElevation = Dimens.elevationLevel5,
                 color = MaterialTheme.colorScheme.primaryContainer
             ) {
                 if (!currentItem?.artworkUri.isNullOrEmpty()) {
@@ -145,7 +145,8 @@ fun PlayerScreen(
 
             GlassCard(
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(Dimens.cornerRadiusScreenCard)
+                shape = RoundedCornerShape(Dimens.cornerRadiusScreenCard),
+                elevation = Dimens.elevationLevel3
             ) {
                 Column(
                     modifier = Modifier
@@ -155,16 +156,17 @@ fun PlayerScreen(
                 ) {
                     Text(
                         text = currentItem?.title ?: "No Media Playing",
-                        style = MaterialTheme.typography.headlineMedium,
+                        style = MaterialTheme.typography.displayMedium,
                         color = MaterialTheme.colorScheme.onSurface,
-                        maxLines = 1,
+                        maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        fontWeight = FontWeight.Black
                     )
-                    Spacer(modifier = Modifier.height(4.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = currentItem?.artist ?: "Select a track to start",
-                        style = MaterialTheme.typography.bodyLarge,
+                        style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -238,7 +240,7 @@ fun PlayerScreen(
                                 isPlayButtonPressed = false
                             },
                             modifier = Modifier
-                                .size(64.dp)
+                                .size(72.dp)
                                 .clip(CircleShape)
                                 .background(MaterialTheme.colorScheme.primary)
                         ) {
@@ -246,7 +248,7 @@ fun PlayerScreen(
                                 imageVector = if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
                                 contentDescription = if (isPlaying) "Pause" else "Play",
                                 tint = Color.White,
-                                modifier = Modifier.size(36.dp)
+                                modifier = Modifier.size(40.dp)
                             )
                         }
 

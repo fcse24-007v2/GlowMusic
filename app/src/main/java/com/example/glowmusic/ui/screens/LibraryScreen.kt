@@ -64,9 +64,9 @@ fun LibraryScreen(
     ) {
         Text(
             text = "Library",
-            style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.padding(horizontal = Dimens.spacingSm, vertical = Dimens.spacingSm)
+            style = MaterialTheme.typography.displayMedium,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(horizontal = Dimens.spacingMd, vertical = Dimens.spacingMd)
         )
 
         TextField(
@@ -77,7 +77,7 @@ fun LibraryScreen(
             singleLine = true,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = Dimens.spacingSm, vertical = Dimens.spacingXs)
+                .padding(horizontal = Dimens.spacingMd, vertical = Dimens.spacingSm)
         )
 
         TabRow(

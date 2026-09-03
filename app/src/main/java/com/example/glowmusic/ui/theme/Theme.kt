@@ -17,11 +17,17 @@ import com.example.glowmusic.domain.model.ThemeStyle
 private val NeutralDarkColorScheme = darkColorScheme(
     primary = GlowPurple,
     onPrimary = Color.White,
+    secondary = GlowCyan,
+    onSecondary = Color.Black,
+    tertiary = GlowPink,
+    onTertiary = Color.White,
     background = Color(0xFF121212),
     onBackground = Color(0xFFE0E0E0),
     surface = Color(0xFF1E1E1E),
     onSurface = Color(0xFFE0E0E0),
-    surfaceVariant = Color(0xFF2C2C2C)
+    surfaceVariant = Color(0xFF2C2C2C),
+    error = GlowRed,
+    onError = Color.White
 )
 
 private val CyberpunkGlowColorScheme = darkColorScheme(
@@ -38,10 +44,16 @@ private val CyberpunkGlowColorScheme = darkColorScheme(
 private val FallbackLightColorScheme = lightColorScheme(
     primary = GlowIndigo,
     onPrimary = Color.White,
+    secondary = GlowCyan,
+    onSecondary = Color.Black,
+    tertiary = GlowPink,
+    onTertiary = Color.White,
     background = Color(0xFFF8FAFC),
     onBackground = TextPrimaryLight,
     surface = Color.White,
-    onSurface = TextPrimaryLight
+    onSurface = TextPrimaryLight,
+    error = GlowRed,
+    onError = Color.White
 )
 
 @Composable

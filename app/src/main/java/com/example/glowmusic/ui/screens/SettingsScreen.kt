@@ -28,14 +28,14 @@ fun SettingsScreen(
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(horizontal = Dimens.spacingSm, vertical = Dimens.spacingSm)
+            .padding(horizontal = Dimens.spacingMd, vertical = Dimens.spacingMd)
             .padding(bottom = 100.dp),
-        verticalArrangement = Arrangement.spacedBy(Dimens.spacingMd)
+        verticalArrangement = Arrangement.spacedBy(Dimens.spacingLg)
     ) {
         Text(
             text = "Settings & Appearance",
-            style = MaterialTheme.typography.headlineLarge,
-            color = MaterialTheme.colorScheme.onSurface
+            style = MaterialTheme.typography.displayMedium,
+            color = MaterialTheme.colorScheme.primary
         )
 
         ThemeSelector(

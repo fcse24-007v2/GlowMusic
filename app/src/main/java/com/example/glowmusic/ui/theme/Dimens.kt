@@ -13,14 +13,25 @@ object Dimens {
     val spacing2Xl: Dp = 48.dp
     val spacing3Xl: Dp = 64.dp
 
-    // Corner Radius
-    val cornerRadiusScreenCard: Dp = 28.dp
-    val cornerRadiusSmallCard: Dp = 24.dp
-    val cornerRadiusButton: Dp = 24.dp
+    // Corner Radius - Shape Scale
+    val cornerRadiusExtraSmall: Dp = 4.dp      // Tight, precise elements
+    val cornerRadiusSmall: Dp = 8.dp           // Buttons, small components
+    val cornerRadiusMedium: Dp = 16.dp         // Standard cards
+    val cornerRadiusScreenCard: Dp = 28.dp     // Large surfaces
+    val cornerRadiusSmallCard: Dp = 24.dp      // Medium cards
+    val cornerRadiusButton: Dp = 24.dp         // Buttons
+    val cornerRadiusLarge: Dp = 36.dp          // Hero sections
 
+    // Elevation Scale - Material 3 Expressive
+    val elevationLevel0: Dp = 0.dp              // Flat surfaces
+    val elevationLevel1: Dp = 1.dp              // Cards, chips
+    val elevationLevel2: Dp = 3.dp              // Floating content
+    val elevationLevel3: Dp = 6.dp              // FABs, emphasized
+    val elevationLevel4: Dp = 8.dp              // Modals, sheets
+    val elevationLevel5: Dp = 12.dp             // Hero elements
 
-    // Elevation
-    val subtleElevation: Dp = 3.dp
+    // Legacy compatibility
+    val subtleElevation: Dp = elevationLevel2
 
     // Animation Timings (250-350ms spring/tween)
     const val animationDurationMs: Int = 300
